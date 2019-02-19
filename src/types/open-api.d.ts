@@ -77,6 +77,7 @@ export interface OpenAPIOperation {
   security?: OpenAPISecurityRequirement[];
   servers?: OpenAPIServer[];
   'x-code-samples'?: OpenAPIXCodeSample[];
+  'emq-url'?: string;
 }
 
 export interface OpenAPIParameter {

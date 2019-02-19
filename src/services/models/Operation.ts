@@ -90,7 +90,7 @@ export class OperationModel implements IMenuItem {
     this.deprecated = !!operationSpec.deprecated;
     this.operationId = operationSpec.operationId;
     this.codeSamples = operationSpec['x-code-samples'] || [];
-    this.path = operationSpec.pathName;
+    this.path = operationSpec['emq-url'] || operationSpec.pathName;
 
     const pathInfo = parser.byRef<OpenAPIPath>(
       JsonPointer.compile(['paths', operationSpec.pathName]),

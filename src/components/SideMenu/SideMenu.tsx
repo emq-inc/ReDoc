@@ -22,8 +22,7 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
         }}
       >
         <MenuItems items={store.items} onActivate={this.activate} root={true} />
-        <RedocAttribution>
-        </RedocAttribution>
+        <RedocAttribution>© 2019 EMQ LIMITED / ALL RIGHTS RESERVED</RedocAttribution>
       </PerfectScrollbarWrap>
     );
   }

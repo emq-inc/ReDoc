@@ -226,6 +226,18 @@ export class MenuStore {
   }
 
   /**
+   */
+  deactivateTagAndSection(item: IMenuItem | undefined) {
+    if (item === undefined) {
+      return;
+    }
+    this.deactivate(this.activeItem);
+    item.deactivate();
+    this.history.replace('');
+    this.activeItemIdx = -1;
+  }
+
+  /**
    * activate menu item and scroll to it
    * @see MenuStore.activate
    */
@@ -237,6 +249,9 @@ export class MenuStore {
   ) {
     // item here can be a copy from search results so find corresponding item from menu
     const menuItem = (item && this.getItemById(item.id)) || item;
+    if (menuItem && menuItem.absoluteIdx === this.activeItemIdx) {
+      return;
+    }
     this.activate(menuItem, updateLocation, rewriteHistory);
     this.scrollToActive();
     if (!menuItem || !menuItem.items.length) {

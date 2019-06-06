@@ -28,12 +28,16 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
   }
 
   activate = (item: IMenuItem) => {
-    this.props.menu.activateAndScroll(item, true);
-    setTimeout(() => {
-      if (this._updateScroll) {
-        this._updateScroll();
-      }
-    });
+    if (item.expanded && (item.type === 'tag' || (item.type === 'section' && item.depth === 1))) {
+      this.props.menu.deactivateTagAndSection(item);
+    } else {
+      this.props.menu.activateAndScroll(item, true);
+      setTimeout(() => {
+        if (this._updateScroll) {
+          this._updateScroll();
+        }
+      });
+    }
   };
 
   private saveScrollUpdate = upd => {
